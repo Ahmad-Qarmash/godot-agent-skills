@@ -27,8 +27,10 @@ task is smaller than the plan would be. Announcing a plan for a one-line change 
 1. If the task has decisions that shape the whole approach — architecture, node/scene structure,
    data model, save format, addon choice, scope boundaries — settle them with the user **before**
    drafting. Ask one question at a time, leading with your recommended option (`grill-me` is the
-   tool for this when the fork is real). Skip this when the direction is already clear from the
-   request, the docs, or prior decisions.
+   tool for this when the fork is real — and when the feature is an economy, progression, or
+   balance system, pair it with `loop-and-economy` so the design is critiqued for inflation,
+   dead ends, and dominant strategies before the plan records it as settled). Skip this when
+   the direction is already clear from the request, the docs, or prior decisions.
 2. Research the entire change enough to establish every phase's boundaries, dependencies, and
    exit criteria. Research phase 1 deeply enough that you could implement it yourself. For later
    phases, specify exact contracts, scenes, and files where they are already knowable; do not
