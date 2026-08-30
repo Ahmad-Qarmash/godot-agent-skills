@@ -38,7 +38,7 @@ by hand. `scripts/install-hooks.sh` wires them into `settings.json`.
 | Running, testing, or claiming something works | `godot-verify` |
 | A feature request touching 3+ files | `write-plan` first |
 | Multi-step implementation | `build-loop` |
-| "Critique this", "poke holes in this" | `grill-me` |
+| "Critique this", "poke holes in this", "which approach should I take" | `grill-me` |
 | Stopping, resuming, "where are we" | `session-handoff` |
 | "Feels floaty / mushy / unresponsive" | `game-feel-review` |
 | Progression, currency, upgrades, balance | `loop-and-economy` |
