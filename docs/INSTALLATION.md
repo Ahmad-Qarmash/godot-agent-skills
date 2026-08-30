@@ -6,6 +6,23 @@ rules stick when other packs are installed alongside.
 
 ## Skills
 
+The `skills` CLI is the shortest path and needs no clone:
+
+```bash
+npx skills add Qb-Lab/godot-agent-skills             # pick from a list
+npx skills add Qb-Lab/godot-agent-skills --list      # names only, no install
+npx skills add Qb-Lab/godot-agent-skills --all       # everything, every agent
+npx skills add Qb-Lab/godot-agent-skills -s godot-verify -g -a claude-code
+```
+
+Project installs land in `./.claude/skills/`; `-g` uses your home directory. Bundled scripts
+(`godot-verify/scripts/verify.sh`) come along with the skill and keep their executable bit.
+`npx skills update` pulls newer versions.
+
+### From a clone
+
+`scripts/install.sh` does the same thing without npx, which is useful offline or in CI:
+
 ```bash
 ./scripts/install.sh                       # all -> ~/.claude/skills/
 ./scripts/install.sh ./.claude/skills      # all -> project-local, committed with the game
