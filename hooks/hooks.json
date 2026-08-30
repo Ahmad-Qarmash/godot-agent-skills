@@ -1,0 +1,52 @@
+{
+  "description": "godot-agent-skills control layer. Injects the standing rules into every prompt, gates structural scene-file edits, and enforces verify-before-done. These run deterministically, unlike a router skill that has to win a triggering contest against every other installed pack.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/verify-baseline.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/godot-context.sh",
+            "timeout": 10,
+            "statusMessage": "Loading Godot project rules"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/guard-scene-files.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/require-verify.sh",
+            "timeout": 15,
+            "statusMessage": "Checking Godot changes were verified"
+          }
+        ]
+      }
+    ]
+  }
+}
