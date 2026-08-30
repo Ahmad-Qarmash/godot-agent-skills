@@ -39,6 +39,7 @@ by hand. `scripts/install-hooks.sh` wires them into `settings.json`.
 | A feature request touching 3+ files | `write-plan` first — a phased plan, then `build-loop` per phase |
 | Multi-step implementation | `build-loop` |
 | "Critique this", "poke holes in this", "which approach should I take" | `grill-me` |
+| A staged changeset before commit, "review this", second opinion | `codex-review` (explicit invocation only) |
 | Stopping, resuming, "where are we" | `session-handoff` |
 | "Feels floaty / mushy / unresponsive" | `game-feel-review` |
 | Progression, currency, upgrades, balance | `loop-and-economy` |

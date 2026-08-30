@@ -45,6 +45,7 @@ they exit silently rather than blocking work.
 | `godot-scene-surgery` | Safe `.tscn`/`.tres` editing, uid and `load_steps` rules, merge-conflict handling |
 | `godot4-api-guard` | Godot 3 → 4 translation tables, plus drift inside Godot 4's own minor versions |
 | `godot-verify` | The verify-before-claiming rule; headless import, parse checks, GdUnit4/GUT, honest exit-code reading |
+| `codex-review` | Bounded Codex review loop over the staged changeset, tuned for Godot bug classes; engine-verified fixes |
 
 ### Productivity — workflow, engine-agnostic
 
