@@ -64,16 +64,14 @@ claude plugin install godot@godot-agent-skills
 
 `hooks/hooks.json` is picked up automatically — no `install-hooks.sh` step.
 
-**Caveat, untested:** skills in this repo sit at `skills/<category>/<name>/SKILL.md`, two levels
-deep. If plugin skill discovery only walks one level, the plugin will register the hooks but
-find no skills. Until that is confirmed, the `install.sh` + `install-hooks.sh` path above is the
-one to trust.
+Skills sit at `skills/<name>/SKILL.md`, one level deep, which is what every discovery
+implementation expects.
 
 ## Manual
 
 ```bash
 mkdir -p ~/.claude/skills
-cp -r skills/engineering/godot-verify ~/.claude/skills/
+cp -r skills/godot-verify ~/.claude/skills/
 ```
 
 Skills are independent — install only the ones you want. The router

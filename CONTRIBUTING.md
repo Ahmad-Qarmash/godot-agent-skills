@@ -6,11 +6,11 @@
    awesome-gamedev ships 68. If one of them owns the topic, add a row to the *delegation*
    table in the router instead of writing a skill. Duplicating them costs context and
    creates version-skew disagreements the model has to arbitrate.
-1. Create `skills/<category>/<skill-name>/SKILL.md`
+1. Create `skills/<skill-name>/SKILL.md` (flat — the `category:` field is the grouping)
 2. Frontmatter needs `name`, `description`, and `category`
 3. Check the name against the other packs — a directory-name collision makes `install.sh`
    silently clobber one of them. `validate.sh` blocks the two known ones.
-4. Add it to the "what this pack owns" table in `skills/router/using-godot-skills/SKILL.md`
+4. Add it to the "what this pack owns" table in `skills/using-godot-skills/SKILL.md`
 5. Add it to the README table
 6. Run `./scripts/validate.sh`
 

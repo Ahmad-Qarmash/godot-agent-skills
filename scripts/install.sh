@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Install godot-agent-skills into an agent's skills directory.
+# Skills are flat in this repo, so this is a straight copy of each skill folder.
 # Usage: ./scripts/install.sh [target-dir]   (default: ~/.claude/skills)
 set -euo pipefail
 

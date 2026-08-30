@@ -75,6 +75,8 @@ packs, none covers scene-file surgery and none covers Godot 3 → 4 translation.
 
 ## Categories
 
-- **engineering/** — engine-specific. Goes stale with releases; check against the project.
-- **productivity/** — workflow discipline. Engine-agnostic, ages well.
-- **design/** — game design judgment. Not Godot-specific and largely version-proof.
+Each skill carries a `category:` field. What it tells you is how fast the contents rot:
+
+- **engineering** — engine-specific. Goes stale with releases; check against the project.
+- **productivity** — workflow discipline. Engine-agnostic, ages well.
+- **design** — game design judgment. Not Godot-specific and largely version-proof.

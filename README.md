@@ -37,7 +37,7 @@ they exit silently rather than blocking work.
 
 ## Skills
 
-### engineering/ — what nothing else covers
+### Engineering — what nothing else covers
 
 | Skill | Purpose |
 |---|---|
@@ -45,7 +45,7 @@ they exit silently rather than blocking work.
 | `godot4-api-guard` | Godot 3 → 4 translation tables, plus drift inside Godot 4's own minor versions |
 | `godot-verify` | The verify-before-claiming rule; headless import, parse checks, GdUnit4/GUT, honest exit-code reading |
 
-### productivity/ — workflow, engine-agnostic
+### Productivity — workflow, engine-agnostic
 
 | Skill | Purpose |
 |---|---|
@@ -54,14 +54,14 @@ they exit silently rather than blocking work.
 | `build-loop` | One change per verification cycle, so failures stay attributable |
 | `session-handoff` | Compact state snapshot for resuming later |
 
-### design/ — game design judgment
+### Design — game design judgment
 
 | Skill | Purpose |
 |---|---|
 | `game-feel-review` | Input buffering, coyote time, hitstop, camera, response curves |
 | `loop-and-economy` | Core loop, sources/sinks, progression pacing, dominant strategies |
 
-### router/
+### Router
 
 `using-godot-skills` — precedence rules and the delegation map for composing with other packs.
 
@@ -99,12 +99,12 @@ event — it will not clobber GodotPrompter's `SessionStart` entry. As a Claude 
 
 See [docs/INSTALLATION.md](docs/INSTALLATION.md) for manual paths and per-agent details.
 
-## A note on the category folders
+## A note on categories
 
-Skills live in `skills/<category>/<skill-name>/SKILL.md` for readability. Some agents discover
-skills only one level deep, which is why `install.sh` flattens them to
-`<skills-dir>/<skill-name>/SKILL.md` on install. The categories are a repo convention, not a
-runtime feature — each skill also carries a `category:` field in its frontmatter.
+Skills live flat at `skills/<skill-name>/SKILL.md`, which is the layout every agent's discovery
+expects — nesting them under category folders puts them one level too deep for some, including
+Claude Code's plugin loader. The grouping survives as a `category:` field in each skill's
+frontmatter, and as the headings in the table above.
 
 ## Status
 

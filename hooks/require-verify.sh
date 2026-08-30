@@ -37,8 +37,7 @@ STAMP="$ROOT/.godot/verify-stamp"
 # Resolve verify.sh for both repo layout and post-install flattened layout.
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VERIFY=""
-for p in "$HERE/../skills/engineering/godot-verify/scripts/verify.sh" \
-         "$HERE/../skills/godot-verify/scripts/verify.sh" \
+for p in "$HERE/../skills/godot-verify/scripts/verify.sh" \
          "$HERE/../godot-verify/scripts/verify.sh"; do
   [ -f "$p" ] && { VERIFY="$(cd "$(dirname "$p")" && pwd)/$(basename "$p")"; break; }
 done
