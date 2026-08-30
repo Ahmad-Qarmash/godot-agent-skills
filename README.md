@@ -63,6 +63,11 @@ they exit silently rather than blocking work.
 | `game-feel-review` | Input buffering, coyote time, hitstop, camera, response curves |
 | `loop-and-economy` | Core loop, sources/sinks, progression pacing, dominant strategies |
 
+Skills compose — every skill whose trigger matches loads, not just one. The standing combo:
+an economy or progression design still being decided loads `loop-and-economy` for the domain
+critique **and** `grill-me` to force it to a decision, ideally before `write-plan` records the
+outcome. No special syntax needed — "grill my upgrade economy: …" triggers both.
+
 ### Router
 
 `using-godot-skills` — precedence rules and the delegation map for composing with other packs.
