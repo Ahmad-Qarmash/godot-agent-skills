@@ -50,7 +50,7 @@ they exit silently rather than blocking work.
 
 | Skill | Purpose |
 |---|---|
-| `write-plan` | Reviewable plan before non-trivial work |
+| `write-plan` | Phased, reviewable plan before non-trivial work — one phase per agent session |
 | `grill-me` | Stress-test a design, then decide it — pickable options with a recommendation |
 | `build-loop` | One change per verification cycle, so failures stay attributable |
 | `session-handoff` | Compact state snapshot for resuming later |

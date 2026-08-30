@@ -36,7 +36,7 @@ by hand. `scripts/install-hooks.sh` wires them into `settings.json`.
 | Editing, repairing, or merging `.tscn` / `.tres`, or a broken `uid://` | `godot-scene-surgery` |
 | Writing or reviewing GDScript that may carry Godot 3 API | `godot4-api-guard` |
 | Running, testing, or claiming something works | `godot-verify` |
-| A feature request touching 3+ files | `write-plan` first |
+| A feature request touching 3+ files | `write-plan` first — a phased plan, then `build-loop` per phase |
 | Multi-step implementation | `build-loop` |
 | "Critique this", "poke holes in this", "which approach should I take" | `grill-me` |
 | Stopping, resuming, "where are we" | `session-handoff` |
