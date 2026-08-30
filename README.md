@@ -89,15 +89,94 @@ version every prompt, so advice pinned to another version gets treated as unveri
 ```bash
 git clone https://github.com/Qb-Lab/godot-agent-skills.git
 cd godot-agent-skills
-./scripts/install.sh ./.claude/skills      # skills, project-local
-./scripts/install-hooks.sh                 # control layer -> ./.claude/settings.json
 ```
 
-`install-hooks.sh` is idempotent and merges alongside hooks other packs registered on the same
-event — it will not clobber GodotPrompter's `SessionStart` entry. As a Claude Code plugin,
-`hooks/hooks.json` is picked up automatically and no hook install step is needed.
+### Everything, into your game repo
 
-See [docs/INSTALLATION.md](docs/INSTALLATION.md) for manual paths and per-agent details.
+The recommended setup. Skills version alongside the code, and everyone who clones the game
+gets them:
+
+```bash
+cd path/to/your-game
+/path/to/godot-agent-skills/scripts/install.sh ./.claude/skills
+/path/to/godot-agent-skills/scripts/install-hooks.sh
+```
+
+Then commit `.claude/`. First command installs all 10 skills; second wires the four hooks into
+`./.claude/settings.json`.
+
+### Everything, user-wide
+
+Available in every project. The hooks stay silent outside Godot projects, so this is safe:
+
+```bash
+./scripts/install.sh                                # -> ~/.claude/skills/
+./scripts/install-hooks.sh ~/.claude/settings.json
+```
+
+### One skill, or a few
+
+Every skill is independent. Name the target directory, then the skills you want:
+
+```bash
+./scripts/install.sh --list                         # what is available
+
+./scripts/install.sh ~/.claude/skills godot-verify  # just one
+
+./scripts/install.sh ./.claude/skills \
+  godot-scene-surgery godot4-api-guard godot-verify # the Godot guardrails only
+```
+
+Unknown names fail before anything is copied, and print the valid list. Re-running is safe —
+each named skill is replaced, and skills you did not name are left alone.
+
+Useful subsets:
+
+| You want | Install |
+|---|---|
+| Only the Godot-specific guardrails | `godot-scene-surgery godot4-api-guard godot-verify` |
+| Only the workflow discipline, any engine | `write-plan grill-me build-loop session-handoff` |
+| Only the design review skills | `game-feel-review loop-and-economy` |
+| Everything except the router (you use another pack's router) | omit `using-godot-skills` |
+
+`using-godot-skills` references the others, so install it last or edit its tables to match what
+you actually took — `install.sh` warns you when you install a subset.
+
+### Hooks and skills are independent
+
+Install either without the other:
+
+- **Skills, no hooks** — works in Cursor, Codex, Copilot and anything else that reads
+  `SKILL.md`. The rules become advisory rather than enforced.
+- **Hooks, no skills** — the control layer still injects the standing rules, still gates scene
+  files, still blocks unverified turns. Without `godot-verify` installed, the `Stop` hook falls
+  back to printing raw `godot --headless` commands instead of pointing at `verify.sh`.
+
+`install-hooks.sh` is idempotent and merges alongside hooks other packs registered on the same
+event — it will not clobber GodotPrompter's `SessionStart` entry.
+
+### As a Claude Code plugin
+
+```bash
+claude plugin marketplace add Qb-Lab/godot-agent-skills
+claude plugin install godot@godot-agent-skills
+```
+
+Skills and `hooks/hooks.json` are both picked up automatically — no install script needed. This
+is all-or-nothing; use the scripts above if you want a subset.
+
+### Check it worked
+
+Open a Godot project and send any prompt. The response should be working from an injected block
+naming your engine version. `/hooks` lists what is registered. For the skills, ask something
+that should trigger one:
+
+> "I'm getting `Invalid call. Nonexistent function 'instance'` in my Godot project"
+
+`godot4-api-guard` should load.
+
+See [docs/INSTALLATION.md](docs/INSTALLATION.md) for per-agent paths, manual copying, and what
+each hook can do to your session.
 
 ## A note on categories
 

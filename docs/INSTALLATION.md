@@ -7,15 +7,31 @@ rules stick when other packs are installed alongside.
 ## Skills
 
 ```bash
-./scripts/install.sh                       # -> ~/.claude/skills/
-./scripts/install.sh ./.claude/skills      # project-local, committed with the game
-./scripts/install.sh ~/.cursor/skills
+./scripts/install.sh                       # all -> ~/.claude/skills/
+./scripts/install.sh ./.claude/skills      # all -> project-local, committed with the game
+./scripts/install.sh ~/.cursor/skills      # all -> another agent
 ```
-
-Copies each skill into the target, flattening the category folders.
 
 Project-local is usually better for a game repo: the skills version alongside the code, and
 everyone on the team gets them from the clone.
+
+### Installing specific skills
+
+Name the target directory first, then one or more skill names:
+
+```bash
+./scripts/install.sh --list                                   # available names
+./scripts/install.sh ~/.claude/skills godot-verify            # one
+./scripts/install.sh ./.claude/skills godot-verify godot4-api-guard
+```
+
+The target is required when selecting, so an argument is never ambiguous between a directory
+and a skill name. Unknown names abort before anything is copied and print the valid list —
+a half-finished install is worse than none. Re-running replaces only the skills you name.
+
+Skills are independent and can be installed in any combination, with one exception:
+`using-godot-skills` references the others by name, so install it last or edit its tables to
+match what you took. `install.sh` prints a reminder when you install a subset.
 
 ## Control layer (hooks)
 
