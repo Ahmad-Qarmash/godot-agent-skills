@@ -42,7 +42,12 @@ by hand. `scripts/install-hooks.sh` wires them into `settings.json`.
 | A staged changeset before commit, "review this", second opinion | `codex-review` (explicit invocation only) |
 | Stopping, resuming, "where are we" | `session-handoff` |
 | "Feels floaty / mushy / unresponsive" | `game-feel-review` |
-| Progression, currency, upgrades, balance | `loop-and-economy` |
+| Progression, currency, upgrades, balance | `loop-and-economy` — plus `grill-me` when a design decision is on the table |
+
+Rows compose — load every skill whose trigger matches, not just the best one. The standing
+combo: an economy or progression *design* still being decided loads `loop-and-economy` for the
+domain critique **and** `grill-me` to force it to a decision, ideally before `write-plan`
+records the outcome.
 
 The first two are the reason this pack exists: across the ~140 skills in the other Godot
 packs, none covers scene-file surgery and none covers Godot 3 → 4 translation.
