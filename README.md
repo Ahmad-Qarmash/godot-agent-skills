@@ -55,6 +55,8 @@ they exit silently rather than blocking work.
 | `grill-me` | Stress-test a design, then decide it — pickable options with a recommendation |
 | `build-loop` | One change per verification cycle, so failures stay attributable |
 | `session-handoff` | Compact state snapshot for resuming later |
+| `scope-control` | The producer who says no — MVP triage, prototype-first, the infrastructure trap |
+| `design-record` | Durable vision, pillars, and decision log, so rejected ideas stay rejected |
 
 ### Design — game design judgment
 
@@ -62,11 +64,27 @@ they exit silently rather than blocking work.
 |---|---|
 | `game-feel-review` | Input buffering, coyote time, hitstop, camera, response curves |
 | `loop-and-economy` | Core loop, sources/sinks, progression pacing, dominant strategies |
+| `streamability` | Clip potential, unscripted stories, and whether multiplayer earns its cost |
+| `playtest-review` | Feedback → ranked findings; the judge kept separate from the builder |
+
+### Strategy — market-facing judgment
+
+| Skill | Purpose |
+|---|---|
+| `market-scan` | Current-market research protocol — Steam, Twitch, reviews, saturation; never from recall |
+| `concept-eval` | Scored concept gate returning BUILD / PROTOTYPE / MODIFY / RESEARCH MORE / KILL |
 
 Skills compose — every skill whose trigger matches loads, not just one. The standing combo:
 an economy or progression design still being decided loads `loop-and-economy` for the domain
 critique **and** `grill-me` to force it to a decision, ideally before `write-plan` records the
 outcome. No special syntax needed — "grill my upgrade economy: …" triggers both.
+
+The strategy and design skills also chain into a greenlight pipeline for new game ideas —
+`market-scan → concept-eval → scope-control → design → prototype → playtest-review`, with
+`design-record` keeping every verdict on file. The router documents the full pipeline. Roles
+you might expect and won't find — level design, enemy/AI design, narrative, Steam launch
+strategy — are deliberately absent: they are premature before a validated prototype, and the
+technical halves are covered by the larger packs this one delegates to.
 
 ### Router
 
@@ -118,6 +136,11 @@ npx skills add Qb-Lab/godot-agent-skills \
 # The workflow discipline only — engine-agnostic, useful outside Godot
 npx skills add Qb-Lab/godot-agent-skills \
   -s write-plan -s grill-me -s build-loop -s session-handoff
+
+# The studio layer — greenlight pipeline, scope control, playtesting, decision memory
+npx skills add Qb-Lab/godot-agent-skills \
+  -s market-scan -s concept-eval -s scope-control -s streamability \
+  -s playtest-review -s design-record
 ```
 
 `using-godot-skills` references the other skills by name, so install it last or edit its tables

@@ -1,6 +1,6 @@
 ---
 name: using-godot-skills
-description: Index and precedence rules for the godot-agent-skills pack, and how it composes with other installed Godot skill packs (GodotPrompter, awesome-gamedev, Randroids-Dojo). Consult when a Godot task could be served by more than one installed skill, when two packs give conflicting API advice, or when you need to know which pack owns a given concern. Use whenever a request involves Godot, GDScript, .tscn or .tres files, game feel, game balance, or planning game development work.
+description: Index and precedence rules for the godot-agent-skills pack, and how it composes with other installed Godot skill packs (GodotPrompter, awesome-gamedev, Randroids-Dojo). Consult when a Godot task could be served by more than one installed skill, when two packs give conflicting API advice, or when you need to know which pack owns a given concern. Use whenever a request involves Godot, GDScript, .tscn or .tres files, game feel, game balance, game concepts or market viability, scope or playtesting, or planning game development work.
 category: router
 ---
 
@@ -43,11 +43,34 @@ by hand. `scripts/install-hooks.sh` wires them into `settings.json`.
 | Stopping, resuming, "where are we" | `session-handoff` |
 | "Feels floaty / mushy / unresponsive" | `game-feel-review` |
 | Progression, currency, upgrades, balance | `loop-and-economy` — plus `grill-me` when a design decision is on the table |
+| "What's trending", "is this genre saturated", competitor or market questions | `market-scan` — never answered from internal knowledge |
+| A game idea or pitch, "should I build this" | `concept-eval` — with `market-scan` for the evidence and `grill-me` for the argument |
+| New feature requests, content at scale, MVP questions, backend/infra urges | `scope-control` |
+| Streamer appeal, clips, virality, "does multiplayer earn its cost" | `streamability` |
+| Playtest feedback, "is it actually fun", reviewing a build against intent | `playtest-review` |
+| A decision made / overridden / rejected, "didn't we decide this already" | `design-record` |
 
 Rows compose — load every skill whose trigger matches, not just the best one. The standing
 combo: an economy or progression *design* still being decided loads `loop-and-economy` for the
 domain critique **and** `grill-me` to force it to a decision, ideally before `write-plan`
 records the outcome.
+
+## The greenlight pipeline
+
+For a new game idea the strategy and design skills run as a pipeline, each gate feeding the
+next. Enter wherever the project actually is; never skip forward past an unanswered gate:
+
+```
+idea → market-scan → concept-eval (+grill-me) → scope-control (MVP cut)
+     → loop-and-economy + streamability (design the loop and the clip engine)
+     → write-plan → build-loop + godot-verify (prototype)
+     → playtest-review → iterate, or re-enter concept-eval → GO / PIVOT / KILL
+```
+
+`design-record` runs alongside the whole pipeline: every verdict, cut, and override lands in
+`docs/design/`, and every skill checks the rejected list before proposing. Judging is kept
+separate from building on purpose — the session that implemented a build does not also declare
+it fun; that call belongs to `playtest-review` with real players.
 
 The first two are the reason this pack exists: across the ~140 skills in the other Godot
 packs, none covers scene-file surgery and none covers Godot 3 → 4 translation.
@@ -86,3 +109,5 @@ Each skill carries a `category:` field. What it tells you is how fast the conten
 - **engineering** — engine-specific. Goes stale with releases; check against the project.
 - **productivity** — workflow discipline. Engine-agnostic, ages well.
 - **design** — game design judgment. Not Godot-specific and largely version-proof.
+- **strategy** — market-facing judgment. The *method* ages well; any market *claim* is stale
+  in weeks, which is why these skills require fresh research instead of recall.
